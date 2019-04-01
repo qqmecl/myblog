@@ -25,7 +25,7 @@ SECRET_KEY = 'u1&sxpd@8e@l+yz36e_m$8_%yrdtgy_qh68l77d@0==u)ko-69'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'chenli.work']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.chenli.work']
 
 
 # Application definition
