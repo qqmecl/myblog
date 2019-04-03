@@ -6,27 +6,35 @@ from django.utils.html import strip_tags
 
 # Create your models here.
 class Category(models.Model):
-	name = models.CharField(max_length = 100)
+	name = models.CharField(max_length = 100, verbose_name = '类名')
 
 	def __str__(self):
 		return self.name
+
+	class Meta:
+		verbose_name = '分类'
+		verbose_name_plural = verbose_name
 
 class Tag(models.Model):
-	name = models.CharField(max_length = 100)
+	name = models.CharField(max_length = 100, verbose_name = '标签名')
 
 	def __str__(self):
 		return self.name
 
+	class Meta:
+		verbose_name = '标签'
+		verbose_name_plural = verbose_name
+
 class Post(models.Model):
-	title = models.CharField(max_length = 70)
-	body = models.TextField()
-	created_time = models.DateTimeField()
-	modified_time = models.DateTimeField()
-	excerpt = models.CharField(max_length = 200, blank = True)
-	category = models.ForeignKey(Category)
-	tag = models.ManyToManyField(Tag, blank = True)
-	author = models.ForeignKey(User)
-	views = models.PositiveIntegerField(default = 0)
+	title = models.CharField(max_length = 70, verbose_name = '标题')
+	body = models.TextField(verbose_name = '内容')
+	created_time = models.DateTimeField(verbose_name = '创建时间')
+	modified_time = models.DateTimeField(verbose_name = '修改时间')
+	excerpt = models.CharField(max_length = 200, blank = True, verbose_name = '摘要')
+	category = models.ForeignKey(Category, verbose_name = '类名')
+	tag = models.ManyToManyField(Tag, blank = True, verbose_name = '标签')
+	author = models.ForeignKey(User, verbose_name = '作者')
+	views = models.PositiveIntegerField(default = 0, verbose_name = '阅读量')
 
 	def get_absolute_url(self):
 		return reverse('blog:detail', kwargs={'pk': self.pk})
@@ -48,3 +56,5 @@ class Post(models.Model):
 
 	class Meta:
 		ordering = ['-created_time']
+		verbose_name = '文章'
+		verbose_name_plural = verbose_name
